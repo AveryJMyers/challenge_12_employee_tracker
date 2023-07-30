@@ -103,7 +103,7 @@ function addADepartment() {
             console.log('Department added successfully');
           }
           
-          db.end();
+          mainMenu();
         });
       })
       .catch((error) => {
@@ -142,8 +142,7 @@ function addADepartment() {
           } else {
             console.log('Role added successfully');
           }
-          
-          db.end();
+          mainMenu();
         });
       })
       .catch((error) => {
@@ -186,7 +185,7 @@ function addADepartment() {
             console.log('employee added successfully');
           }
           
-          db.end();
+          mainMenu()
         });
       })
       .catch((error) => {
