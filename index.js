@@ -1,9 +1,11 @@
 const express = require('express');
-const db = require('../db/connection');
+const db = require('./db/connection');
 const app = express();
 const inquirer = require('inquirer');
+const departmentFunctions = require('./functions/department')
 
-function init(){
+
+function mainMenu(){
     inquirer
     .prompt([
         {
@@ -46,7 +48,22 @@ function init(){
                 updateEmployeeRole();
                 break;
             case 'Exit':
+                console.log('Goodbye!');
                 break;
+            default:
+                console.log('Error');
+                mainMenu();
         }
     })
+}
+
+mainMenu();
+
+
+function viewAllDepartments(){
+    db.query('SELECT * FROM department', (err, results) => {
+        if (err) console.log(err);  
+        console.table(results);
+        mainMenu();
+    });
 }
