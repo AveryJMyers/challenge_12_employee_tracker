@@ -9,6 +9,7 @@
   "author": "Avery Myers",
   "license": "ISC",
   "dependencies": {
+    "inquirer": "^8.2.4",
     "mysql2": "^3.5.2",
     "sequelize": "^6.32.1"
   }

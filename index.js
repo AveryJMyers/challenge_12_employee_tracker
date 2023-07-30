@@ -1,8 +1,7 @@
-const express = require('express');
-const db = require('./db/connection');
-const app = express();
+
+const db = require('./db/connection');;
 const inquirer = require('inquirer');
-const departmentFunctions = require('./functions/department')
+
 
 
 function mainMenu(){
@@ -193,4 +192,39 @@ function addADepartment() {
       .catch((error) => {
         console.error('Error:', error);
       });
+  }
+
+  function updateEmployeeRole(){
+    inquirer
+    .prompt([
+      {
+        message: 'What is the ID of the employee whose role you want to update:',
+        name: 'employeeID',
+      },
+      {
+          message: 'Enter the new role ID for the employee:',
+          name: 'newRoleID',
+      },
+      
+      ])
+      .then ((response) => {
+        const employeeID = response.employeeID;
+        const newRoleID = response.newRoleID;
+
+        const sqlQuery = 'UPDATE employee SET role_id = ? WHERE id = ?'
+
+        db.query(sqlQuery, [newRoleID, employeeID], (err, results) => {
+            if (err){
+                console.error('error updating employee role', err);
+            } else {
+                console.log('Employee role updated succesfully')
+            }
+            mainMenu();
+        })
+      })
+      .catch((error) => {
+        console.error('error', error)
+
+      });
+
   }
