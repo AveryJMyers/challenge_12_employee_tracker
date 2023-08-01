@@ -3,7 +3,7 @@ const db = require('./db/connection');;
 const inquirer = require('inquirer');
 
 
-
+// gives user options
 function mainMenu(){
     inquirer
     .prompt([
@@ -23,6 +23,7 @@ function mainMenu(){
             ]
         },
     ])
+    //responds based off user input
     .then((response) => { 
         switch (response.initQuestion) {
             case 'View All Departments':
@@ -58,6 +59,7 @@ function mainMenu(){
 
 mainMenu();
 
+// Uses SQL to retrieve all departments
 
 function viewAllDepartments(){
     db.query('SELECT * FROM department', (err, results) => {
@@ -67,6 +69,8 @@ function viewAllDepartments(){
     });
 };
 
+// Uses SQL to retrieve all roles
+
 function viewAllRoles(){
     db.query('SELECT * FROM role', (err, results) => {
         if (err) console.log(err);  
@@ -75,6 +79,7 @@ function viewAllRoles(){
     });
 };
 
+// Uses SQL to retrieve all employees
 function viewAllEmployees(){
     db.query('SELECT * FROM employee', (err, results) => {
         if (err) console.log(err);  
@@ -83,7 +88,7 @@ function viewAllEmployees(){
     });
 };
 
-
+// Uses SQL to add a department based off user input
 function addADepartment() {
     inquirer
       .prompt([
@@ -110,7 +115,7 @@ function addADepartment() {
         console.error('Error:', error);
       });
   }
-
+// Uses SQL to add a role based off user input
   function addARole() {
     inquirer
       .prompt([
@@ -149,7 +154,7 @@ function addADepartment() {
         console.error('Error:', error);
       });
   }
-
+// Uses SQL to add an employee based off user input
   function addEmployee() {
     inquirer
       .prompt([
@@ -192,7 +197,7 @@ function addADepartment() {
         console.error('Error:', error);
       });
   }
-
+// Uses SQL to update an employees role
   function updateEmployeeRole(){
     inquirer
     .prompt([
