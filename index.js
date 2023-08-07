@@ -49,7 +49,7 @@ function mainMenu(){
                 break;
             case 'Exit':
                 console.log('Goodbye!');
-                break;
+                process.exit()
             default:
                 console.log('Error');
                 mainMenu();

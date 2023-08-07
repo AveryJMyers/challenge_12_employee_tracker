@@ -16,6 +16,8 @@ Application that tracks employees by title, salary, department and management
 2. Use MYSQL to run 'source seeds.sql'
 3. Use node to run 'index.js'
 4. Navigate and select the options in the menu
+EXAMPLE:
+https://drive.google.com/file/d/1I4Xyh-bkh7fwM0AIT37JYyzdc_91bJms/view
 
 
 
