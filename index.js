@@ -72,7 +72,7 @@ function viewAllDepartments(){
 // Uses SQL to retrieve all roles
 
 function viewAllRoles(){
-    db.query('SELECT * FROM role', (err, results) => {
+    db.query('SELECT role.id, role.title, role.salary, department.name AS department FROM role INNER JOIN department ON role.department_id = department.id ', (err, results) => {
         if (err) console.log(err);  
         console.table(results);
         mainMenu();
@@ -81,7 +81,7 @@ function viewAllRoles(){
 
 // Uses SQL to retrieve all employees
 function viewAllEmployees(){
-    db.query('SELECT * FROM employee', (err, results) => {
+    db.query('SELECT  employee.id, employee.first_name, employee.last_name, role.title, role.salary, CONCAT_WS("", manager.first_name, manager.last_name) AS manager_name, department.name AS department FROM employee LEFT JOIN role ON employee.role_id = role.id LEFT JOIN employee AS manager ON employee.manager_id = manager.id LEFT JOIN department ON role.department_id = department.id', (err, results) => {
         if (err) console.log(err);  
         console.table(results);
         mainMenu();
